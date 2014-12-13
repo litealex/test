@@ -7,13 +7,17 @@
         body{
             background-color: antiquewhite;
         }
+        .btn {
+            background-color: cornflowerblue;
+            color: white;
+        }
     </style>
 </head>
 <body>
-<button id="btn">Click Me</button>
+<button class="btn">Btn</button>
 <script>
     document
-            .getElementById('btn')
+            .getElementsByClassName('btn')[0]
             .addEventListener('click', function () {
                 alert(new Date());
             }, false);
