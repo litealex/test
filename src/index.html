@@ -14,13 +14,28 @@
     </style>
 </head>
 <body ng-controller="MainController">
-
-<button class="btn" ng-click="click()">Click Me</button>
+    <btn click="click()"></btn>
 <script src="js/angular.js"></script>
+<body>
 <script>
     (function(){
         'use strict';
         angular.module('app',[])
+                .directive('btn', function () {
+                    return {
+                        restrict: 'E',
+                        replace: true,
+                        template: '<button>Super Btn</button>',
+                        scope: {
+                            click: '&'
+                        },
+                        link: function (scope, element) {
+                            element.on('click', function () {
+                                scope.click();
+                            });
+                        }
+                    };
+                })
                 .service('srv',function(){
                     this.click = function(){
                         alert('srv');
