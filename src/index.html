@@ -22,9 +22,14 @@
     (function(){
         'use strict';
         angular.module('app',[])
-                .controller('MainController', function ($scope) {
+                .service('srv',function(){
+                    this.click = function(){
+                        alert('srv');
+                    };
+                })
+                .controller('MainController', function ($scope, srv) {
                    $scope.click= function () {
-                       alert(new Date());
+                       srv.click();
                    };
                 });
         angular.bootstrap(document.getElementsByTagName('body')[0],['app']);
