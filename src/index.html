@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>Index</title>
     <style>
-        body{
+        body {
             background-color: antiquewhite;
         }
+
         .btn {
             background-color: cornflowerblue;
             color: white;
@@ -14,20 +15,34 @@
     </style>
 </head>
 <body ng-controller="MainController">
-
-<button class="btn" ng-click="click()">Click Me</button>
+    <btn click="click()"></btn>
 <script src="js/angular.js"></script>
 <body>
 <script>
-    (function(){
+    (function () {
         'use strict';
-        angular.module('app',[])
+        angular.module('app', [])
+                .directive('btn', function () {
+                    return {
+                        restrict: 'E',
+                        replace: true,
+                        template: '<button>Super Btn</button>',
+                        scope: {
+                            click: '&'
+                        },
+                        link: function (scope, element) {
+                            element.on('click', function () {
+                                scope.click();
+                            });
+                        }
+                    };
+                })
                 .controller('MainController', function ($scope) {
-                   $scope.click= function () {
-                       alert(new Date());
-                   };
+                    $scope.click = function () {
+                        alert(new Date());
+                    };
                 });
-        angular.bootstrap(document.getElementsByTagName('body')[0],['app']);
+        angular.bootstrap(document.getElementsByTagName('body')[0], ['app']);
     }());
 </script>
 </body>
